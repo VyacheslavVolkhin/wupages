@@ -34,8 +34,12 @@
 /* ----------------------------------- *\
 			structura
 \* ----------------------------------- */
-html {
+html,
+body {
   scroll-behavior: smooth;
+}
+[id] {
+  scroll-margin-top: 40px;
 }
 .page-full {
   margin: 0 auto;
