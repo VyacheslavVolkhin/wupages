@@ -34,6 +34,9 @@
 /* ----------------------------------- *\
 			structura
 \* ----------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
 .page-full {
   margin: 0 auto;
   position: relative;
