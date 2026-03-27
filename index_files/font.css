@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'SFProDisplay-Bold';
+  src: url('https://xn--90abjb3clnt.xn--p1ai/SFProDisplay-Bold.eot');
+  src: url('https://xn--90abjb3clnt.xn--p1ai/SFProDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+       url('https://xn--90abjb3clnt.xn--p1ai/SFProDisplay-Bold.svg#SFProDisplay-Bold') format('svg'),
+       url('https://xn--90abjb3clnt.xn--p1ai/SFProDisplay-Bold.ttf') format('truetype'),
+       url('https://xn--90abjb3clnt.xn--p1ai/SFProDisplay-Bold.woff') format('woff'),
+       url('https://xn--90abjb3clnt.xn--p1ai/SFProDisplay-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
