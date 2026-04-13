@@ -608,6 +608,12 @@ body {
   flex-direction: column;
   gap: 15px;
 }
+.main-form-box .section-main .elm-number {
+  background: var(--color-border);
+}
+.main-form-box .section-main:has(:checked) .elm-number {
+  background: var(--color-att-dark);
+}
 .main-form-box .frm-content.active ~ .frm-submit-first {
   display: none;
 }
@@ -1050,6 +1056,12 @@ body {
   height: 66px;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+  -webkit-transition: all ease 0.2s;
+  transition: all ease 0.2s;
+}
+.info-subscribe-box .soc-items-wrap .elm-ico:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 .info-subscribe-box .info-inner-wrap {
   letter-spacing: normal;
@@ -1994,3 +2006,74 @@ body {
 /* ----------------------------------- *\
 		common styles
 \* ----------------------------------- */
+/* ----------------------------------- *\
+			animation
+\* ----------------------------------- */
+.item-animation {
+  -webkit-transition-property:
+    opacity,
+    -webkit-transform;
+  transition-property:
+    opacity,
+    -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property:
+    transform,
+    opacity,
+    -webkit-transform;
+  -webkit-transition-duration: 0.8s;
+  transition-duration: 0.8s;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+  /* opacity: 0;
+    &.item-active {
+        opacity: 1;
+        -webkit-transform: translate(0,0);
+        -ms-transform: translate(0,0);
+        transform: translate(0,0);
+    } */
+}
+.item-aleft:not(.item-active) {
+  -webkit-transform: translateX(-100px);
+  transform: translateX(-100px);
+  opacity: 0;
+}
+.item-aright:not(.item-active) {
+  opacity: 0;
+  -webkit-transform: translateX(100px);
+  transform: translateX(100px);
+}
+.item-abottom:not(.item-active) {
+  opacity: 0;
+  -webkit-transform: translateY(-100px);
+  transform: translateY(-100px);
+}
+.item-atop:not(.item-active) {
+  opacity: 0;
+  -webkit-transform: translateY(100px);
+  transform: translateY(100px);
+}
+.item-animation-second {
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+.item-animation-third {
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+.item-animation-four {
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+.item-animation-five {
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+}
+.item-animation-six {
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+}
+.item-animation-seven {
+  -webkit-transition-delay: 0.6s;
+  transition-delay: 0.6s;
+}

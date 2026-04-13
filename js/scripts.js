@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
 
 
+	
+	
+
+
 	//select toggle content visibility
 	const inputs = document.querySelectorAll(
 	  "input[data-content], input[data-content-check], input[data-content-uncheck]"
@@ -157,3 +161,69 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 	
 })
+
+
+// items animate: IntersectionObserver не зависит от scroll на window (в части окружений
+// scroll не всплывает на window). Fallback — scroll/resize на window, document и scrollingElement.
+function initItemAnimations() {
+	let items = document.querySelectorAll('.item-animation');
+	if (!items.length) return;
+
+	function activate(el) {
+		el.classList.add('item-active');
+	}
+
+	if ('IntersectionObserver' in window) {
+		let observer = new IntersectionObserver(
+			function (entries) {
+				entries.forEach(function (entry) {
+					if (!entry.isIntersecting) return;
+					let el = entry.target;
+					activate(el);
+					observer.unobserve(el);
+				});
+			},
+			{ root: null, rootMargin: '0px', threshold: 0 }
+		);
+		items.forEach(function (item) {
+			observer.observe(item);
+		});
+		return;
+	}
+
+	function isElementInViewport(el) {
+		let rect = el.getBoundingClientRect();
+		let vh = window.innerHeight;
+		return rect.top < vh && rect.bottom > 0;
+	}
+	function scan() {
+		document.querySelectorAll('.item-animation').forEach(function (item) {
+			if (isElementInViewport(item)) activate(item);
+		});
+	}
+	let scrollScheduled = false;
+	function onScrollOrResize() {
+		if (scrollScheduled) return;
+		scrollScheduled = true;
+		requestAnimationFrame(function () {
+			scrollScheduled = false;
+			scan();
+		});
+	}
+	let opts = { passive: true };
+	window.addEventListener('scroll', onScrollOrResize, opts);
+	document.addEventListener('scroll', onScrollOrResize, opts);
+	let root = document.scrollingElement || document.documentElement;
+	if (root && root !== document) {
+		root.addEventListener('scroll', onScrollOrResize, opts);
+	}
+	window.addEventListener('resize', onScrollOrResize, opts);
+	window.addEventListener('load', scan);
+	scan();
+}
+
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', initItemAnimations);
+} else {
+	initItemAnimations();
+}
